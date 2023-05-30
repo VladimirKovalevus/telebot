@@ -7,20 +7,18 @@ from aiogram.dispatcher.filters.state import State, StatesGroup
 from aiogram.utils import executor
 from aiogram.contrib.fsm_storage.memory import MemoryStorage
 import asyncio
-
 import aioschedule
+import config
 
 storage =MemoryStorage()
 
 dataBase = postgre.PostgeHelper()
 
-bot_key ='6025644007:AAHdbuq30hLIQkEpVZ9t14hXgMlnRWI2LqE'
-api_key ='1U1WM0T5XFIEOIPY'
-my_key='GVKH4CU2WHAC0JPN'
-bot = Bot(bot_key)
+
+bot = Bot(config.bot_key)
 dp = Dispatcher(bot,storage=storage)
 
-apiHelper = aphavantage.AlphaApiHelper(my_key)
+apiHelper = aphavantage.AlphaApiHelper(config.api_key)
 
 
 class FSM(StatesGroup):
