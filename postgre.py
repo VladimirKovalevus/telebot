@@ -45,10 +45,10 @@ class PostgeHelper:
         else:
             user_id= user_id[0];
 
-        self.cursor.execute("""insert into sheets values (default,%s,%s);""",(name,user_id,));
+        self.cursor.execute("""insert into sheets values (default,%s,%s) on conflict do nothing;""",(name,user_id,));
     
     def insert_user(self,chat_id):
-        self.cursor.execute("""insert into users values (default,%s);""",(str(chat_id),));
+        self.cursor.execute("""insert into users values (default,%s) on conflict do nothing;""",(str(chat_id),));
 
     def get_all_sheets_by_name(self,chat_id):
         self.cursor.execute("""select sh.name from sheets  sh
